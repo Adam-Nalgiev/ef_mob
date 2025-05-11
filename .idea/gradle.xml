@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="testRunner" value="CHOOSE_PER_TEST" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleJvm" value="#GRADLE_LOCAL_JAVA_HOME" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/core" />
+            <option value="$PROJECT_DIR$/core/feature-api" />
+            <option value="$PROJECT_DIR$/feature" />
+            <option value="$PROJECT_DIR$/feature/account" />
+            <option value="$PROJECT_DIR$/feature/account/account-api" />
+            <option value="$PROJECT_DIR$/feature/account/account-impl" />
+            <option value="$PROJECT_DIR$/feature/authorization" />
+            <option value="$PROJECT_DIR$/feature/authorization/authorization-api" />
+            <option value="$PROJECT_DIR$/feature/authorization/authorization-impl" />
+            <option value="$PROJECT_DIR$/feature/favorites" />
+            <option value="$PROJECT_DIR$/feature/favorites/favorites-api" />
+            <option value="$PROJECT_DIR$/feature/favorites/favorites-impl" />
+            <option value="$PROJECT_DIR$/feature/main" />
+            <option value="$PROJECT_DIR$/feature/main/main-api" />
+            <option value="$PROJECT_DIR$/feature/main/main-impl" />
+            <option value="$PROJECT_DIR$/feature/menu" />
+            <option value="$PROJECT_DIR$/feature/menu/menu-api" />
+            <option value="$PROJECT_DIR$/feature/menu/menu-impl" />
+            <option value="$PROJECT_DIR$/feature/onboarding" />
+            <option value="$PROJECT_DIR$/feature/onboarding/onboarding-api" />
+            <option value="$PROJECT_DIR$/feature/onboarding/onboarding-impl" />
+          </set>
+        </option>
+        <option name="resolveExternalAnnotations" value="false" />
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>
