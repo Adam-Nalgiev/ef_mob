@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="main">Главная</string>
+    <string name="favorite">Избранное</string>
+    <string name="account">Аккаунт</string>
+
+    <string name="descr_main">Главная</string>
+    <string name="descr_favorites">Избранное</string>
+    <string name="descr_account">Аккаунт</string>
+</resources>
