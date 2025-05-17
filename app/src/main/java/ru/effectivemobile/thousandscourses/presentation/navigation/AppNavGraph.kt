@@ -13,13 +13,15 @@ import ru.effectivemobile.menu_impl.presentation.navigation.MenuNavGraph
 import ru.effectivemobile.onboarding_impl.presentation.navigation.OnboardingNavGraph
 
 @Composable
-internal fun NavGraph(
+internal fun AppNavGraph(
     navController: NavHostController,
     modifier: Modifier = Modifier
 ) {
     NavHost(
         navController = navController,
-        startDestination = OnboardingNavGraph().route,
+        startDestination = MenuNavGraph(                MainNavGraph(),
+            FavoritesNavGraph(),
+            AccountNavGraph(),).route,
         modifier = modifier
     ) {
         register(

@@ -17,7 +17,11 @@ class MainNavGraph: MainFeatureApi {
         modifier: Modifier
     ) {
         navGraphBuilder.composable(Routes.MAIN) {
-            MainScreen()
+            MainScreen {
+                navController.navigate(
+                    Routes.COURSE_DESCRIPTION
+                )
+            }
         }
     }
 }

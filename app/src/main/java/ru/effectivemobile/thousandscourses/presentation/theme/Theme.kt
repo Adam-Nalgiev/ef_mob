@@ -7,14 +7,8 @@ import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 
-private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
-)
-
 @Composable
-fun ThousandsCoursesTheme(
+internal fun ThousandsCoursesTheme(
     dynamicColor: Boolean = true,
     content: @Composable () -> Unit
 ) {
@@ -24,7 +18,7 @@ fun ThousandsCoursesTheme(
             dynamicDarkColorScheme(context)
         }
 
-        else -> DarkColorScheme
+        else -> darkColorScheme()
     }
 
     MaterialTheme(
