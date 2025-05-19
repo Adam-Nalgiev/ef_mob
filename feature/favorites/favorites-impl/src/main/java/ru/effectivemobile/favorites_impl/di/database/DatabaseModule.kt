@@ -1,4 +1,4 @@
-package ru.effectivemobile.main_impl.di.database
+package ru.effectivemobile.favorites_impl.di.database
 
 import android.content.Context
 import androidx.room.Room
@@ -7,8 +7,8 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import ru.effectivemobile.main_impl.data.database.Dao
-import ru.effectivemobile.main_impl.data.database.Database
+import ru.effectivemobile.favorites_impl.data.database.Dao
+import ru.effectivemobile.favorites_impl.data.database.Database
 import javax.inject.Singleton
 
 @Module

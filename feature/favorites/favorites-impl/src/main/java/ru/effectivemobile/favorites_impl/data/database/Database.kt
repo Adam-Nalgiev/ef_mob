@@ -1,8 +1,8 @@
-package ru.effectivemobile.main_impl.data.database
+package ru.effectivemobile.favorites_impl.data.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import ru.effectivemobile.main_impl.data.model.dbo.CourseDbo
+import ru.effectivemobile.favorites_impl.data.model.dbo.CourseDbo
 
 @Database(
     entities = [CourseDbo::class],

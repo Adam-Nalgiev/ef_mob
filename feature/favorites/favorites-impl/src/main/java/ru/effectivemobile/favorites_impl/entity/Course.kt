@@ -1,4 +1,4 @@
-package ru.effectivemobile.main_impl.entity
+package ru.effectivemobile.favorites_impl.entity
 
 internal interface Course {
 

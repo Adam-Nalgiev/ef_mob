@@ -1,10 +1,10 @@
-package ru.effectivemobile.main_impl.data.database
+package ru.effectivemobile.favorites_impl.data.database
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import ru.effectivemobile.main_impl.data.model.dbo.CourseDbo
+import ru.effectivemobile.favorites_impl.data.model.dbo.CourseDbo
 
 @Dao
 internal interface Dao {

@@ -8,7 +8,7 @@ import ru.effectivemobile.main_impl.data.network.Client
 import ru.effectivemobile.main_impl.entity.Course
 import javax.inject.Inject
 
-class Repository @Inject constructor(
+internal class Repository @Inject constructor(
     private val client: Client,
     private val database: Dao
 ) {
@@ -32,6 +32,10 @@ class Repository @Inject constructor(
             database.insert(courseDtoToDboMapper(listOf(courseDto)).first())
     }
 
+    suspend fun deleteFromFavorites(id: String) {
+        database.delete(id)
+    }
+
     private suspend fun saveCourses(courses: List<CourseDbo>) {
         courses.forEach { course ->
             database.insert(course)
@@ -40,18 +44,16 @@ class Repository @Inject constructor(
 
     private fun courseDtoToDboMapper(coursesDto: List<CourseDto>): List<CourseDbo> {
         return coursesDto.map { course ->
-            with(course) {
-                CourseDbo(
-                    id = id,
-                    title = title,
-                    text = text,
-                    price = price,
-                    rate = rate,
-                    startDate = startDate,
-                    hasLike = hasLike,
-                    publishDate = publishDate
-                )
-            }
+            CourseDbo(
+                id = course.id,
+                title = course.title,
+                text = course.text,
+                price = course.price,
+                rate = course.rate,
+                startDate = course.startDate,
+                hasLike = course.hasLike,
+                publishDate = course.publishDate
+            )
         }
     }
 }

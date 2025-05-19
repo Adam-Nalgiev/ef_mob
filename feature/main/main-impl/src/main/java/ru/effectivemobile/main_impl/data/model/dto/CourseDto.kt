@@ -1,8 +1,10 @@
 package ru.effectivemobile.main_impl.data.model.dto
 
+import androidx.compose.runtime.Immutable
 import ru.effectivemobile.main_impl.entity.Course
 
-data class CourseDto(
+@Immutable
+internal data class CourseDto(
 
     override val id: String,
     override val title: String,

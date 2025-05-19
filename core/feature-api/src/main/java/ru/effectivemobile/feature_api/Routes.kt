@@ -8,4 +8,6 @@ object Routes {
     const val FAVORITES = "Favorites"
     const val ACCOUNT = "Account"
     const val COURSE_DESCRIPTION = "Course Description"
+
+    const val KEY_IS_AUTHORIZED = "is_authorized"
 }

@@ -1,4 +1,4 @@
-package ru.effectivemobile.main_impl.presentation.viewmodel
+package ru.effectivemobile.favorites_impl.presentation.viewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -7,20 +7,21 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import ru.effectivemobile.main_impl.domain.DeleteCourseFromFavoritesUseCase
-import ru.effectivemobile.main_impl.domain.GetCoursesListUseCase
-import ru.effectivemobile.main_impl.domain.SaveCourseToFavoritesUseCase
-import ru.effectivemobile.main_impl.entity.Course
+import ru.effectivemobile.favorites_impl.domain.DeleteCourseFromFavoritesUseCase
+import ru.effectivemobile.favorites_impl.domain.GetFavoritesCoursesListUseCase
+import ru.effectivemobile.favorites_impl.domain.SaveCourseToFavoritesUseCase
+import ru.effectivemobile.favorites_impl.entity.Course
 import javax.inject.Inject
 
 @HiltViewModel
-internal class MainScreenViewModel @Inject constructor(
-    private val getCoursesListUseCase: GetCoursesListUseCase,
+internal class FavoritesViewModel @Inject constructor(
+    private val getFavoritesCoursesListUseCase: GetFavoritesCoursesListUseCase,
     private val saveCourseToFavoritesUseCase: SaveCourseToFavoritesUseCase,
-    private val deleteCourseFromFavoritesUseCase: DeleteCourseFromFavoritesUseCase
-) : ViewModel() {
+    private val deleteCourseFromFavoritesUseCase: DeleteCourseFromFavoritesUseCase,
+): ViewModel() {
+
     private val _coursesFlow = MutableStateFlow<List<Course>>(emptyList())
-    val coursesFlow = _coursesFlow.asStateFlow()
+    internal val coursesFlow = _coursesFlow.asStateFlow()
 
     init {
         getCourses()
@@ -38,10 +39,6 @@ internal class MainScreenViewModel @Inject constructor(
         }
     }
 
-    fun sortList() {
-        _coursesFlow.value = _coursesFlow.value.sortedBy { it.publishDate }
-    }
-
     fun convertDate(date: String): String {
         val dateParts = date.split("-")
         val day = dateParts[2]
@@ -53,8 +50,8 @@ internal class MainScreenViewModel @Inject constructor(
 
     private fun getCourses() {
         viewModelScope.launch {
-            val courses = getCoursesListUseCase.execute()
-            _coursesFlow.value = courses ?: emptyList()
+            val courses = getFavoritesCoursesListUseCase.execute()
+            _coursesFlow.value = courses
         }
     }
 
@@ -73,7 +70,6 @@ internal class MainScreenViewModel @Inject constructor(
             "11" to "Ноября",
             "12" to "Декабря",
         )
-
         return map[monthNum] ?: ""
     }
 }

@@ -1,4 +1,4 @@
-package ru.effectivemobile.main_impl.presentation.view
+package ru.effectivemobile.favorites_impl.presentation.view
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -18,15 +17,12 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.derivedStateOf
@@ -37,12 +33,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.SolidColor
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.vectorResource
-import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -52,23 +45,23 @@ import dev.chrisbanes.haze.HazeTint
 import dev.chrisbanes.haze.hazeEffect
 import dev.chrisbanes.haze.hazeSource
 import dev.chrisbanes.haze.rememberHazeState
-import ru.effectivemobile.main_impl.R
-import ru.effectivemobile.main_impl.data.model.dto.CourseDto
-import ru.effectivemobile.main_impl.entity.Course
-import ru.effectivemobile.main_impl.presentation.view.theme.ButtonSmallType
-import ru.effectivemobile.main_impl.presentation.view.theme.CaptionType
-import ru.effectivemobile.main_impl.presentation.view.theme.Gray
-import ru.effectivemobile.main_impl.presentation.view.theme.Green
-import ru.effectivemobile.main_impl.presentation.view.theme.Transparent
-import ru.effectivemobile.main_impl.presentation.view.theme.Typography
-import ru.effectivemobile.main_impl.presentation.view.theme.White
-import ru.effectivemobile.main_impl.presentation.viewmodel.MainScreenViewModel
+import ru.effectivemobile.favorites_impl.R
+import ru.effectivemobile.favorites_impl.data.model.dbo.CourseDbo
+import ru.effectivemobile.favorites_impl.entity.Course
+import ru.effectivemobile.favorites_impl.presentation.view.theme.ButtonSmallType
+import ru.effectivemobile.favorites_impl.presentation.view.theme.CaptionType
+import ru.effectivemobile.favorites_impl.presentation.view.theme.Gray
+import ru.effectivemobile.favorites_impl.presentation.view.theme.Green
+import ru.effectivemobile.favorites_impl.presentation.view.theme.Transparent
+import ru.effectivemobile.favorites_impl.presentation.view.theme.Typography
+import ru.effectivemobile.favorites_impl.presentation.view.theme.White
+import ru.effectivemobile.favorites_impl.presentation.viewModel.FavoritesViewModel
 
 @Composable
-internal fun MainScreen(
+internal fun FavoritesScreen(
     modifier: Modifier = Modifier,
-    viewModel: MainScreenViewModel = hiltViewModel(),
-    onNavigateTo: () -> Unit
+    viewModel: FavoritesViewModel = hiltViewModel(),
+    onNavigateTo: () -> Unit,
 ) {
     val courses = viewModel.coursesFlow.collectAsStateWithLifecycle()
     val isLoadingVisible = remember { mutableStateOf(courses.value.isEmpty()) }
@@ -78,15 +71,12 @@ internal fun MainScreen(
             .fillMaxSize()
             .padding(start = 8.dp, end = 8.dp)
     ) {
-        Row(
-            horizontalArrangement = Arrangement.SpaceBetween,
-            modifier = Modifier.padding(top = 16.dp)
-        ) {
-            SearchField(modifier = Modifier.weight(1f))
-            Filter()
-        }
-
-        DescendListButton(modifier = Modifier.align(Alignment.End), viewModel = viewModel)
+        Text(
+            text = stringResource(R.string.favorites),
+            style = Typography.titleLarge,
+            color = White,
+            modifier = Modifier.padding(top = 24.dp, bottom = 16.dp)
+        )
 
         LoadingBar(
             visibility = isLoadingVisible,
@@ -108,77 +98,9 @@ internal fun MainScreen(
 }
 
 @Composable
-private fun SearchField(
-    modifier: Modifier = Modifier
-) {
-    val searchText = remember { mutableStateOf("") }
-
-    TextField(
-        value = searchText.value,
-        onValueChange = { searchText.value = it },
-        colors = TextFieldDefaults.colors(
-            focusedIndicatorColor = Transparent,
-            unfocusedIndicatorColor = Transparent,
-            focusedContainerColor = Gray,
-            unfocusedContainerColor = Gray,
-        ),
-        keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
-        shape = RoundedCornerShape(28.dp),
-        leadingIcon = {
-            Icon(
-                ImageVector.vectorResource(R.drawable.ic_search), null, tint = White
-            )
-        },
-        label = { Text(stringResource(R.string.search)) },
-        modifier = modifier
-            .padding(end = 8.dp)
-            .height(56.dp)
-    )
-}
-
-@Composable
-private fun Filter(
-    modifier: Modifier = Modifier
-) {
-    IconButton(
-        onClick = {},
-        modifier = modifier
-            .size(56.dp)
-            .background(
-                shape = CircleShape,
-                color = Gray
-            )
-    ) {
-        Icon(imageVector = ImageVector.vectorResource(R.drawable.ic_filter), null)
-    }
-}
-
-@Composable
-private fun DescendListButton(
-    modifier: Modifier = Modifier,
-    viewModel: MainScreenViewModel
-) {
-    TextButton(
-        onClick = { viewModel.sortList() },
-        modifier = modifier
-    ) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Text("Сортировать по убыванию", color = Green) // да, все еще лень писать это в ресурсах
-            Icon(
-                imageVector = ImageVector.vectorResource(R.drawable.ic_arrows),
-                contentDescription = null,
-                tint = Green
-            )
-        }
-    }
-}
-
-@Composable
 private fun CoursesList(
     modifier: Modifier = Modifier,
-    viewModel: MainScreenViewModel,
+    viewModel: FavoritesViewModel,
     onNavigateTo: () -> Unit,
     courses: List<Course>
 ) {
@@ -199,7 +121,7 @@ private fun CoursesList(
 @Composable
 private fun CourseItem(
     modifier: Modifier = Modifier,
-    viewModel: MainScreenViewModel,
+    viewModel: FavoritesViewModel,
     courseInfo: Course,
     onNavigateTo: () -> Unit
 ) {
@@ -292,7 +214,7 @@ private fun LoadingBar(
 @Composable
 private fun AddToFavoritesButton(
     modifier: Modifier = Modifier,
-    viewModel: MainScreenViewModel,
+    viewModel: FavoritesViewModel,
     course: Course
 ) {
     val likeState = remember { mutableStateOf(course.hasLike) }
@@ -310,7 +232,7 @@ private fun AddToFavoritesButton(
             if (likeState.value == true) {
                 viewModel.deleteFromFavorites(course.id)
             } else {
-                viewModel.saveToFavorites((course as CourseDto).copy(hasLike = true))
+                viewModel.saveToFavorites((course as CourseDbo).copy(hasLike = true))
             }
 
             likeState.value = !likeState.value
@@ -322,7 +244,11 @@ private fun AddToFavoritesButton(
             )
             .size(32.dp)
     ) {
-        Icon(painterResource(R.drawable.ic_bookmark), null, tint = tint.value)
+        Icon(
+            painterResource(R.drawable.ic_bookmark),
+            null,
+            tint = tint.value
+        )
     }
 }
 
@@ -342,7 +268,11 @@ private fun ToDescriptionButton(
             color = Green,
             modifier = Modifier.padding(end = 4.dp)
         )
-        Icon(painter = painterResource(R.drawable.ic_arrow), null, tint = Green)
+        Icon(
+            painter = painterResource(R.drawable.ic_arrow),
+            null,
+            tint = Green
+        )
     }
 }
 
@@ -356,7 +286,11 @@ private fun Rate(
         enabled = false,
         modifier = modifier
     ) {
-        Icon(painter = painterResource(R.drawable.ic_star), null, tint = Green)
+        Icon(
+            painter = painterResource(R.drawable.ic_star),
+            null,
+            tint = Green
+        )
         Text(
             text = rate,
             style = CaptionType,
@@ -386,6 +320,11 @@ private fun Date(
             blurRadius = 30.dp
         }
     ) {
-        Text(text = date, style = CaptionType, color = White, modifier = Modifier.padding(4.dp))
+        Text(
+            text = date,
+            style = CaptionType,
+            color = White,
+            modifier = Modifier.padding(4.dp)
+        )
     }
 }

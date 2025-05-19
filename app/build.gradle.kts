@@ -42,7 +42,8 @@ android {
 }
 
 dependencies {
-    
+    implementation(libs.datastore)
+
     implementation(libs.hilt)
     ksp(libs.hilt.compiler)
 

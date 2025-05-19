@@ -52,8 +52,6 @@ dependencies {
 
     implementation(libs.bundles.retrofit)
 
-    implementation(libs.bundles.coil)
-
     implementation(libs.androidx.navigation)
 
     implementation(platform(libs.androidx.compose.bom))

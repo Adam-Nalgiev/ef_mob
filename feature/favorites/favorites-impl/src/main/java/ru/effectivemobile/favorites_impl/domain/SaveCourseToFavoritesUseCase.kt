@@ -1,7 +1,7 @@
-package ru.effectivemobile.main_impl.domain
+package ru.effectivemobile.favorites_impl.domain
 
-import ru.effectivemobile.main_impl.data.Repository
-import ru.effectivemobile.main_impl.entity.Course
+import ru.effectivemobile.favorites_impl.data.Repository
+import ru.effectivemobile.favorites_impl.entity.Course
 import javax.inject.Inject
 
 internal class SaveCourseToFavoritesUseCase @Inject constructor(

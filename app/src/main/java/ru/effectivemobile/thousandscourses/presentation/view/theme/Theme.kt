@@ -1,4 +1,4 @@
-package ru.effectivemobile.thousandscourses.presentation.theme
+package ru.effectivemobile.thousandscourses.presentation.view.theme
 
 import android.os.Build
 import androidx.compose.material3.MaterialTheme

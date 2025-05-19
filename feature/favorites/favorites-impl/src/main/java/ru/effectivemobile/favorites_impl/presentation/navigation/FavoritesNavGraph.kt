@@ -5,7 +5,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import ru.effectivemobile.favorites_api.FavoritesFeatureApi
-import ru.effectivemobile.favorites_impl.presentation.FavoritesScreen
+import ru.effectivemobile.favorites_impl.presentation.view.FavoritesScreen
 import ru.effectivemobile.feature_api.Routes
 
 class FavoritesNavGraph: FavoritesFeatureApi{
@@ -17,7 +17,9 @@ class FavoritesNavGraph: FavoritesFeatureApi{
         modifier: Modifier
     ) {
         navGraphBuilder.composable(Routes.FAVORITES) {
-            FavoritesScreen()
+            FavoritesScreen{
+                navController.navigate(Routes.COURSE_DESCRIPTION)
+            }
         }
     }
 }

@@ -1,4 +1,4 @@
-package ru.effectivemobile.thousandscourses.presentation
+package ru.effectivemobile.thousandscourses.presentation.view
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -9,7 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
 import ru.effectivemobile.thousandscourses.presentation.navigation.AppNavGraph
-import ru.effectivemobile.thousandscourses.presentation.theme.ThousandsCoursesTheme
+import ru.effectivemobile.thousandscourses.presentation.view.theme.ThousandsCoursesTheme
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -20,7 +20,7 @@ class MainActivity : ComponentActivity() {
             ThousandsCoursesTheme {
                 AppNavGraph(
                     navController = rememberNavController(),
-                    modifier = Modifier.fillMaxSize()
+                    modifier = Modifier.Companion.fillMaxSize()
                 )
             }
         }

@@ -12,11 +12,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:name=".presentation.App"
+        android:name=".presentation.view.App"
         android:theme="@style/Theme.ThousandsCourses"
         tools:targetApi="31">
         <activity
-            android:name=".presentation.MainActivity"
+            android:name=".presentation.view.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.ThousandsCourses">
             <intent-filter>

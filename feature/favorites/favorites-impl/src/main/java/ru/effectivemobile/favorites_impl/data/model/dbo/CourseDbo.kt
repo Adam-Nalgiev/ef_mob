@@ -1,10 +1,11 @@
-package ru.effectivemobile.main_impl.data.model.dbo
+package ru.effectivemobile.favorites_impl.data.model.dbo
 
 import androidx.compose.runtime.Immutable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
-import ru.effectivemobile.main_impl.entity.Course
+import ru.effectivemobile.favorites_impl.entity.Course
 
 @Immutable
 @Entity(tableName = "courses")
