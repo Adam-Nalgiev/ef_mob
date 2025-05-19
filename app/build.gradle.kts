@@ -59,6 +59,7 @@ dependencies {
     implementation(libs.androidx.material3)
 
     implementation(project(":core:feature-api"))
+    implementation(project(":core:datastore"))
     implementation(project(":feature:onboarding:onboarding-impl"))
     implementation(project(":feature:onboarding:onboarding-api"))
     implementation(project(":feature:authorization:authorization-impl"))
@@ -71,6 +72,8 @@ dependencies {
     implementation(project(":feature:favorites:favorites-impl"))
     implementation(project(":feature:account:account-api"))
     implementation(project(":feature:account:account-impl"))
+    implementation(project(":feature:course-description:course-description-api"))
+    implementation(project(":feature:course-description:course-description-impl"))
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

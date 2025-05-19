@@ -3,7 +3,6 @@ package ru.effectivemobile.favorites_impl.data.model.dbo
 import androidx.compose.runtime.Immutable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
-import androidx.room.Index
 import androidx.room.PrimaryKey
 import ru.effectivemobile.favorites_impl.entity.Course
 

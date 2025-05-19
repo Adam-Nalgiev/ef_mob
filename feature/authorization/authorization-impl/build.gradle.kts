@@ -37,14 +37,15 @@ android {
 }
 
 dependencies {
+    implementation(libs.datastore)
 
     implementation(libs.androidx.navigation)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
-    implementation(libs.material)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.material3)
 
+    implementation(project(":core:datastore"))
     implementation(project(":core:feature-api"))
     implementation(project(":feature:authorization:authorization-api"))
 

@@ -30,6 +30,7 @@ fun MenuScreen(
     mainScreen: FeatureApi,
     favoritesScreen: FeatureApi,
     accountScreen: FeatureApi,
+    courseDescription: FeatureApi,
     navHostController: NavHostController,
     modifier: Modifier = Modifier
 ) {
@@ -115,6 +116,10 @@ fun MenuScreen(
             register(
                 navController = navHostController,
                 featureApi = accountScreen
+            )
+            register(
+                navController = navHostController,
+                featureApi = courseDescription
             )
         }
     }

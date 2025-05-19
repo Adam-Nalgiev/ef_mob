@@ -80,7 +80,11 @@ internal fun AuthorizationScreen(
             modifier = Modifier.padding(bottom = 8.dp)
         )
 
-        EmailInputField(email, isEmailCorrect, viewModel)
+        EmailInputField(
+            email = email,
+            isCorrect = isEmailCorrect,
+            viewModel = viewModel
+        )
 
         Text(
             text = stringResource(R.string.password),
@@ -88,15 +92,21 @@ internal fun AuthorizationScreen(
             modifier = Modifier.padding(bottom = 8.dp)
         )
 
-        PasswordInputField(password)
+        PasswordInputField(password = password)
 
-        LoginButton(email, password, isEmailCorrect, viewModel, onNavigateTo)
+        LoginButton(
+            email = email,
+            password = password,
+            isCorrect = isEmailCorrect,
+            viewModel = viewModel,
+            onNavigateTo = onNavigateTo
+        )
 
-        BottomText(Modifier.align(Alignment.CenterHorizontally))
+        BottomText(modifier = Modifier.align(Alignment.CenterHorizontally))
 
         DividingLine()
 
-        SocialNetworkButtons(viewModel)
+        SocialNetworkButtons(viewModel = viewModel)
     }
 }
 
@@ -111,7 +121,8 @@ private fun EmailInputField(
         value = email.value,
         onValueChange = {
             email.value = it
-            isCorrect.value = email.value.isNotBlank() && !viewModel.isValidEmail(email.value)
+
+            isCorrect.value = email.value.isNotBlank() && viewModel.isValidEmail(email.value)
         },
         shape = RoundedCornerShape(30.dp),
         colors = TextFieldDefaults.colors(
@@ -124,7 +135,7 @@ private fun EmailInputField(
             keyboardType = KeyboardType.Email,
             imeAction = ImeAction.Done
         ),
-        isError = isCorrect.value,
+        isError = !isCorrect.value && email.value.isNotEmpty(),
         placeholder = { LabelText(stringResource(R.string.email_example)) },
         singleLine = true,
         modifier = modifier
@@ -164,12 +175,12 @@ private fun PasswordInputField(
 
 @Composable
 private fun LoginButton(
+    modifier: Modifier = Modifier,
     email: MutableState<String>,
     password: MutableState<String>,
     isCorrect: MutableState<Boolean>,
     viewModel: AuthViewModel,
-    onNavigateTo: () -> Unit,
-    modifier: Modifier = Modifier
+    onNavigateTo: () -> Unit
 ) {
     val scope = rememberCoroutineScope()
     val context = LocalContext.current
@@ -182,6 +193,7 @@ private fun LoginButton(
                     password.value
                 )
                 if (result && isCorrect.value) {
+                    viewModel.saveAuthState(context)
                     onNavigateTo()
                 } else {
                     Toast.makeText(context, R.string.wrong_log_pass, Toast.LENGTH_LONG).show()

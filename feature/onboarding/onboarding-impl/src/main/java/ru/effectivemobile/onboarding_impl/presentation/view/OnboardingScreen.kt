@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
@@ -28,7 +29,7 @@ import ru.effectivemobile.onboarding_impl.presentation.view.theme.Green
 import ru.effectivemobile.onboarding_impl.presentation.view.theme.Typography
 
 @Composable
-fun OnboardingScreen(modifier: Modifier = Modifier, onNavigateTo: () -> Unit) {
+internal fun OnboardingScreen(modifier: Modifier = Modifier, onNavigateTo: () -> Unit) {
 
     Column(
         modifier = modifier.fillMaxSize()
@@ -90,6 +91,7 @@ private fun NextButton(
         ),
         modifier = modifier
             .fillMaxWidth()
+            .navigationBarsPadding()
             .padding(start = 16.dp, end = 16.dp, bottom = 16.dp)
     ) {
         Text(text = stringResource(R.string.next), style = ButtonType)

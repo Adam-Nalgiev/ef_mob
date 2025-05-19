@@ -12,6 +12,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/core" />
+            <option value="$PROJECT_DIR$/core/datastore" />
             <option value="$PROJECT_DIR$/core/feature-api" />
             <option value="$PROJECT_DIR$/feature" />
             <option value="$PROJECT_DIR$/feature/account" />
@@ -20,6 +21,9 @@
             <option value="$PROJECT_DIR$/feature/authorization" />
             <option value="$PROJECT_DIR$/feature/authorization/authorization-api" />
             <option value="$PROJECT_DIR$/feature/authorization/authorization-impl" />
+            <option value="$PROJECT_DIR$/feature/course-description" />
+            <option value="$PROJECT_DIR$/feature/course-description/course-description-api" />
+            <option value="$PROJECT_DIR$/feature/course-description/course-description-impl" />
             <option value="$PROJECT_DIR$/feature/favorites" />
             <option value="$PROJECT_DIR$/feature/favorites/favorites-api" />
             <option value="$PROJECT_DIR$/feature/favorites/favorites-impl" />
@@ -34,7 +38,6 @@
             <option value="$PROJECT_DIR$/feature/onboarding/onboarding-impl" />
           </set>
         </option>
-        <option name="resolveExternalAnnotations" value="false" />
       </GradleProjectSettings>
     </option>
   </component>

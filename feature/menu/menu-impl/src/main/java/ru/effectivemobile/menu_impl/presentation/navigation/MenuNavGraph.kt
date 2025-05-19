@@ -14,6 +14,7 @@ class MenuNavGraph(
     private val mainScreen: FeatureApi,
     private val favoritesScreen: FeatureApi,
     private val accountScreen: FeatureApi,
+    private val courseDescription: FeatureApi,
 ) : MenuFeatureApi {
 
     override val route: String = Routes.MENU
@@ -24,11 +25,15 @@ class MenuNavGraph(
         modifier: Modifier
     ) {
         navGraphBuilder.composable(route) {
+            val menuController = rememberNavController()
+
             MenuScreen(
                 mainScreen = mainScreen,
                 favoritesScreen = favoritesScreen,
                 accountScreen = accountScreen,
-                navHostController = rememberNavController()
+                courseDescription = courseDescription,
+                navHostController = menuController,
+                modifier = modifier
             )
         }
     }
